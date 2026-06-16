@@ -6,7 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+
   <ItemGroup>
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="FluentValidation" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="../../../BuildingBlocks/Articles.Abstractions/Articles.Abstractions.csproj" />
     <ProjectReference Include="../Submission.Domain/Submission.Domain.csproj" />
     <ProjectReference Include="../Submission.Persistence/Submission.Persistence.csproj" />
   </ItemGroup>

@@ -2,12 +2,11 @@ using Submission.API.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.MapArticleEndpoints();
+app.MapAllEndpoints();
 
 
 app.Run();

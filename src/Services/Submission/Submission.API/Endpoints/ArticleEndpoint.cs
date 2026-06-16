@@ -1,3 +1,6 @@
+using MediatR;
+using Submission.Application.Features.CreateArticle;
+
 namespace Submission.API.Endpoints;
 
 /// <summary>
@@ -5,16 +8,20 @@ namespace Submission.API.Endpoints;
 /// </summary>
 public static class ArticleEndpoint
 {
-    extension(WebApplication app)
+    extension(IEndpointRouteBuilder app)
     {
-        public WebApplication MapArticleEndpoints()
+        public IEndpointRouteBuilder MapArticleEndpoints()
         {
             // Endpoint to create a new article. Only accessible by users with the "Author" role.
-            app.MapPost("api/articles", (CreateArticleRequest request) =>
+            app.MapPost("api/articles", async (CreateArticleCommand request, ISender sender, CancellationToken cancellationToken) =>
             {
-                throw new NotImplementedException();
+                var response = await sender.Send(request, cancellationToken);
+                return Results.Created($"/api/articles/{response.Id}", response);
 
             }).RequireAuthorization(policy => policy.RequireRole("Author"))
+            .Produces(StatusCodes.Status201Created)
+            .ProducesProblem(StatusCodes.Status401Unauthorized)
+            .ProducesValidationProblem(StatusCodes.Status400BadRequest)
             .WithName("CreateArticle")
             .WithTags("Articles")
             .WithSummary("Creates a new article.")
@@ -27,4 +34,3 @@ public static class ArticleEndpoint
 }
 
 
-public record CreateArticleRequest(string Title, string Content);

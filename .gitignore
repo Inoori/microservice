@@ -55,3 +55,15 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# 默认忽略的文件
+.idea/
+/shelf/
+/workspace.xml
+# Rider 忽略的文件
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+/.idea.microservice.iml
+# 基于编辑器的 HTTP 客户端请求
+/httpRequests/
