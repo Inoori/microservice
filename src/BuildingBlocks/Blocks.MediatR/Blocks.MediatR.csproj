@@ -6,13 +6,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="../Submission.Domain/Submission.Domain.csproj"/>
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="MediatR"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer"/>
+        <PackageReference Include="FluentValidation"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions"/>
+
     </ItemGroup>
 
+
+    <ItemGroup>
+      <ProjectReference Include="..\Blocks.Domain\Blocks.Domain.csproj" />
+    </ItemGroup>
 </Project>
