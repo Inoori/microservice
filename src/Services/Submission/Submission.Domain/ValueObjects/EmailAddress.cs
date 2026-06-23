@@ -1,13 +1,12 @@
 using System.Text.RegularExpressions;
+using Blocks.Domain.ValueObject;
 
 namespace Submission.Domain.ValueObjects;
 
-public partial class EmailAddress
+public partial class EmailAddress : StringValueObject
 {
     [GeneratedRegex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase, matchTimeoutMilliseconds: 250)]
     private static partial Regex EmailRegex();
-
-    public string Value { get; private set; }
 
     private EmailAddress(string value) => Value = value;
 

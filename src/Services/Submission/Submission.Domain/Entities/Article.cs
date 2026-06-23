@@ -33,4 +33,14 @@ public partial class Article
     /// 获取文章的参与者列表。
     /// </summary>
     public List<ArticleActor> Actors { get; } = [];
+
+    /// <summary>
+    /// 表示与文章相关的资源集合。
+    /// </summary>
+    private readonly List<Asset> _assets = [];
+
+    /// <summary>
+    /// 文章的资源集合
+    /// </summary>
+    public IReadOnlyList<Asset> Assets => _assets.AsReadOnly();
 }

@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <!-- Enable central package management,
-            https://learn.microsoft.com/en-us/nuget/consume-packages/Central-Package-Management -->
+                https://learn.microsoft.com/en-us/nuget/consume-packages/Central-Package-Management -->
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     </PropertyGroup>
     <ItemGroup>
@@ -11,6 +11,7 @@
         <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.5"/>
         <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.17.0"/>
         <!-- File Storage -->
+        <PackageVersion Include="MongoDB.Driver" Version="3.9.0"/>
         <PackageVersion Include="AWSSDK.S3" Version="4.0.19.1"/>
         <PackageVersion Include="AWSSDK.Core" Version="4.0.3.21"/>
         <!--<PackageVersion Include="Microsoft.AspNetCore.StaticFiles" Version="2.3.9" /> -->

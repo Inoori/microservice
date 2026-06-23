@@ -24,6 +24,14 @@ public static class Extensions
         /// <returns>规则构建选项带有错误信息。</returns>
         public IRuleBuilderOptions<T, TProperty> NotEmptyWithMessage(string propertyName) =>
             rule.NotEmpty().WithMessage(c => ValidationMessages.NullOrEmptyValue.FormatWith(propertyName));
+
+        /// <summary>
+        /// 配置一个带有预定义错误信息的验证规则，要求指定的属性不能为空值。
+        /// </summary>
+        /// <param name="propertyName">被验证属性的名称，将包含在错误信息中。</param>
+        /// <returns>规则构建选项带有错误信息。</returns>
+        public IRuleBuilderOptions<T, TProperty> NotNullWithMessage(string propertyName) =>
+            rule.NotNull().WithMessage(c => ValidationMessages.NullOrEmptyValue.FormatWith(propertyName));
     }
 
 
@@ -36,6 +44,14 @@ public static class Extensions
         /// <returns>规则构建选项带有错误信息。</returns>
         public IRuleBuilderOptions<T, TProperty> NotEmptyWithMessage(string propertyName) =>
             rule.NotEmpty().WithMessage(c => ValidationMessages.NullOrEmptyValue.FormatWith(propertyName));
+
+        /// <summary>
+        /// 配置一个带有预定义错误信息的验证规则，要求指定的属性不能为空值。
+        /// </summary>
+        /// <param name="propertyName">被验证属性的名称，将包含在错误信息中。</param>
+        /// <returns>规则构建选项带有错误信息。</returns>
+        public IRuleBuilderOptions<T, TProperty> NotNullWithMessage(string propertyName) =>
+            rule.NotNull().WithMessage(c => ValidationMessages.NullOrEmptyValue.FormatWith(propertyName));
     }
 
     extension<T>(IRuleBuilderOptions<T, string?> rule)

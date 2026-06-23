@@ -31,5 +31,11 @@ internal class ArticleEntityConfiguration : IEntityTypeConfiguration<Article>
             .HasForeignKey(e => e.JournalId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(e => e.Assets)
+            .WithOne(a => a.Article)
+            .HasForeignKey(a => a.ArticleId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
