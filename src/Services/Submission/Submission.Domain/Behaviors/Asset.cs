@@ -22,4 +22,11 @@ public partial class Asset
         Name = AssetName.AssetTypeDefinition(assetTypeDefinition),
         Type = assetTypeDefinition.Name,
     };
+
+    /// <summary>
+    /// 生成存储文件的路径。
+    /// </summary>
+    /// <param name="fileName">文件名称。</param>
+    /// <returns>存储文件的完整路径。</returns>
+    public string GenerateStorageFilePath(string fileName) => $"Articles/{ArticleId}/{Name}/{fileName}";
 }

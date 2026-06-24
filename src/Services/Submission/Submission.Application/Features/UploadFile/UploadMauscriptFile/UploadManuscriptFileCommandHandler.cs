@@ -1,7 +1,9 @@
 using Articles.Abstractions;
 using Blocks.Exceptions;
+using FileStorage.Contracts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Submission.Domain.Entities;
 using Submission.Persistence;
 using Submission.Persistence.Cache;
 
@@ -9,10 +11,12 @@ namespace Submission.Application.Features.UploadFile;
 
 public class UploadManuscriptFileCommandHandler(
     SubmissionDbContext dbContext,
-    IAssetTypeDefinitionCache assetTypeDefinitionCache)
+    IAssetTypeDefinitionCache assetTypeDefinitionCache,
+    IFileService fileService)
     : IRequestHandler<UploadManuscriptFileCommand, IdResponse>
 {
-    public async Task<IdResponse> Handle(UploadManuscriptFileCommand command, CancellationToken cancellationToken)
+    public async Task<IdResponse> Handle(UploadManuscriptFileCommand command,
+        CancellationToken cancellationToken)
     {
         var article = await dbContext.Articles.AsTracking()
             .Include(a => a.Assets)
@@ -31,6 +35,17 @@ public class UploadManuscriptFileCommandHandler(
             ? article.Assets.SingleOrDefault(a => a.Type == assetTypeDefinition.Id)
             : null) ?? article.CreateAsset(assetTypeDefinition);
 
+        var filePath = asset.GenerateStorageFilePath(command.File.FileName);
+
+        await fileService.UploadFileAsync(filePath, command.File, true, new()
+        {
+            {
+                "entity", nameof(Asset)
+            },
+            {
+                "entityId", asset.Id.ToString()
+            }
+        });
 
         //todo: upload file 
 
